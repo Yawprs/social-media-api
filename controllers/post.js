@@ -13,7 +13,6 @@ router.get('/author/:id',(req,res)=>{
         res.send('Success')
     })
 })
-
 router.post('/new/:id', (req, res) => {
     Post.create({
         content: req.body.content,
@@ -29,20 +28,14 @@ router.post('/new/:id', (req, res) => {
             })
         })
     })
-
     .catch(err => console.log('ERROR CREATING POST', err))
     })
-
-
-
-
 router.get('/hello', (req, res) => {
     Post.find({})
     .then(posts => {
         res.send(posts)
     })
 })
-
 router.get('/hello/:id', (req, res) => {
     Post.find({_id: req.params.id})
     .then(posts => {
@@ -50,7 +43,6 @@ router.get('/hello/:id', (req, res) => {
         res.send(posts)
     })
 })
-
 router.put('/:id', (req, res) => {
     console.log(req.params.id)
     Post.findByIdAndUpdate(req.params.id, req.body, {upsert: true})
@@ -64,7 +56,6 @@ router.put('/:id', (req, res) => {
             res.status(503).send({ message: 'Server Error'})
 })
 })
-
 router.post('/:id', (req, res) => {
     Post.findById(req.params.id)
     .then(createdComment=> {
@@ -80,7 +71,6 @@ router.post('/:id', (req, res) => {
     })
     .catch(err => console.log('ERROR CREATING COMMENT', err))
     })
-
 router.delete('/:id', (req, res) => {
     Post.findByIdAndDelete(req.params.id)
     .then(() => {
@@ -91,7 +81,6 @@ router.delete('/:id', (req, res) => {
         res.status(503).send( {message: 'Server-side error' })
     })
 })
-
 router.delete('/:id', (req, res) => {
     Post.findById(req.params.id)
         .then(deleteComment=> {
@@ -107,9 +96,4 @@ router.delete('/:id', (req, res) => {
         })
         .catch(err => console.log('ERROR DELETING COMMENT', err))
         })
-
-
-
-
-
 module.exports = router
