@@ -20,6 +20,7 @@ router.post('/new/:id', (req, res) => {
         author: req.body.author
     })
     .then(createdPost=> {
+        
         console.log(createdPost)
         User.findById(req.params.id).then((user) => {
             user.posts.push(createdPost)
@@ -37,7 +38,7 @@ router.get('/hello', (req, res) => {
     })
 })
 router.get('/hello/:id', (req, res) => {
-    Post.find({_id: req.params.id})
+    Post.find({_id: req.params.id}).populate('users')
     .then(posts => {
         console.log(posts)
         res.send(posts)
@@ -96,4 +97,5 @@ router.delete('/:id', (req, res) => {
         })
         .catch(err => console.log('ERROR DELETING COMMENT', err))
         })
+
 module.exports = router
