@@ -38,7 +38,7 @@ router.get('/hello', (req, res) => {
     })
 })
 router.get('/hello/:id', (req, res) => {
-    Post.find({_id: req.params.id}).populate('users')
+    Post.find({_id: req.params.id}).populate('author')
     .then(posts => {
         console.log(posts)
         res.send(posts)
