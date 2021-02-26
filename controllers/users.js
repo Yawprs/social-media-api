@@ -59,7 +59,7 @@ router.get('/users', (req,res)=>{
     // User.find({_id:{$ne:req.params.id}})
     User.find({})
     .then(foundUsers=>{
-        console.log(foundUsers)
+        // console.log(foundUsers)
         res.json(foundUsers)
         // res.status(200).send({ message: 'Others Users selected' })
     })
