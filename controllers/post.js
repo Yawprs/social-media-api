@@ -82,7 +82,8 @@ router.delete('/:id', (req, res) => {
         res.status(503).send( {message: 'Server-side error' })
     })
 })
-router.delete('/:id', (req, res) => {
+
+router.delete('/delete/:id', (req, res) => {
     Post.findById(req.params.id)
         .then(deleteComment=> {
             deleteComment.comments.pop({

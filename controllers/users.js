@@ -7,7 +7,6 @@ const passport = require("passport")
 
 
 router.post('/login', (req, res)=> {
-    console.log('route hit')
     User.findOne({email: req.body.email}).populate('posts')
     .then(foundUser=>createUserToken(req, foundUser))
     .then(token => res.json({token}))
@@ -55,9 +54,10 @@ router.post('/profile/edit', (req, res)=> {
 
 
 
-router.get('/users/:id', (req,res)=>{
-    console.log(req.params.id)
-    User.find({_id:{$ne:req.params.id}})
+router.get('/users', (req,res)=>{
+    // console.log(req.params.id)
+    // User.find({_id:{$ne:req.params.id}})
+    User.find({})
     .then(foundUsers=>{
         console.log(foundUsers)
         res.json(foundUsers)
